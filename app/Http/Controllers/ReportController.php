@@ -18,7 +18,7 @@ class ReportController extends Controller
     {
         $request->validate([
             'description' => 'required|string',
-            'location' => 'required|string',
+            'location' => 'required|string', // Este campo ahora contendrá "latitud, longitud"
             'fault_type' => 'required|string',
             'company' => 'required|string',
             'image' => 'nullable|image|max:2048', // Máximo 2MB
@@ -30,10 +30,17 @@ class ReportController extends Controller
             $imagePath = $request->file('image')->store('images', 'public');
         }
 
+        // Extraer latitud y longitud del campo de ubicación
+        $coordinates = explode(',', $request->location);
+        $latitude = isset($coordinates[0]) ? trim($coordinates[0]) : null;
+        $longitude = isset($coordinates[1]) ? trim($coordinates[1]) : null;
+
         // Guardar los datos en la base de datos
         Report::create([
             'description' => $request->description,
-            'location' => $request->location,
+            'location' => $request->location, // Guarda el texto de ubicación
+            'latitude' => $latitude, // Guarda la latitud
+            'longitude' => $longitude, // Guarda la longitud
             'fault_type' => $request->fault_type,
             'company' => $request->company,
             'image' => $imagePath, // Guarda la ruta de la imagen
