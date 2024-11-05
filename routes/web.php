@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReportController;
+use App\Model\Reports;
 
 
 Route::get('/', function () {
@@ -19,7 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/reportar', [ReportController::class, 'create'])->name('reports.create');
-Route::post('/reportar', [ReportController::class, 'store'])->name('reports.store');
+Route::get('/report', [ReportController::class, 'showForm'])->name('report.form');
+Route::post('/report', [ReportController::class, 'submitReport'])->name('report.submit');
+
 
 require __DIR__.'/auth.php';

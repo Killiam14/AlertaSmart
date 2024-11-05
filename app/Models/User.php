@@ -17,11 +17,23 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    const ROLE_ADMIN = 'Administrador';
+    const ROLE_USER = 'Usuario';
+
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password', 'role',
     ];
+
+    public function isAdmin()
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isUser()
+    {
+        return $this->role === self::ROLE_USER;
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -38,11 +50,8 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];    
 }

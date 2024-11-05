@@ -4,38 +4,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Report;
+use App\Models\Report; // Asegúrate de importar el modelo Report
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    // Mostrar el formulario para reportar un problema
-    public function create()
+    public function showForm()
     {
-        return view('reports.create'); // Redirigir a la vista del formulario
+        return view('report');
     }
 
-    // Almacenar el reporte en la base de datos
-    public function store(Request $request)
+    public function submitReport(Request $request)
     {
         $request->validate([
             'description' => 'required|string',
             'location' => 'required|string',
             'fault_type' => 'required|string',
             'company' => 'required|string',
-            'image' => 'nullable|image|max:2048', // Validar imagen si se sube
+            'image' => 'nullable|image|max:2048', // Máximo 2MB
         ]);
 
-        // Crear un nuevo reporte
-        $report = Report::create($request->except('image'));
-
-        // Manejar la carga de imagen si se proporciona
+        // Manejo del archivo de imagen si se sube
+        $imagePath = null;
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 'public'); // Guarda la imagen en el directorio 'public/images'
-            $report->image_path = $path;
-            $report->save();
+            $imagePath = $request->file('image')->store('images', 'public');
         }
 
-        return redirect()->route('reports.create')->with('success', 'Reporte creado exitosamente.');
+        // Guardar los datos en la base de datos
+        Report::create([
+            'description' => $request->description,
+            'location' => $request->location,
+            'fault_type' => $request->fault_type,
+            'company' => $request->company,
+            'image' => $imagePath, // Guarda la ruta de la imagen
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Reporte enviado con éxito.');
     }
 }

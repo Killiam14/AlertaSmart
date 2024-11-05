@@ -23,7 +23,7 @@
             <hr class="border-t-2 border-gray-300 mb-6">
             
             <!-- Botón de Reporte -->
-            <a href="#" class="px-6 py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600">
+            <a href="{{ route('report.form') }}" class="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800">
                 Reportar un Problema
             </a>
         </div>
