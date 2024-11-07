@@ -19,4 +19,10 @@ class DashboardController extends Controller
         $reports = Report::where('user_id', auth()->id())->get();
         return view('history', compact('reports')); // Muestra la vista del historial con los reportes
     }
+    
+    public function showContact()
+    {
+        return view('contact');
+    }
+
 }

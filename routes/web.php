@@ -26,5 +26,6 @@ Route::post('/report', [ReportController::class, 'submitReport'])->name('report.
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
 Route::get('/history', [DashboardController::class, 'showHistory'])->name('report.history')->middleware(['auth']);
+Route::get('/contact', [DashboardController::class, 'showContact'])->name('contact');
 
 require __DIR__.'/auth.php';
