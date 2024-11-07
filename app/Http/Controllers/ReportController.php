@@ -44,6 +44,7 @@ class ReportController extends Controller
             'fault_type' => $request->fault_type,
             'company' => $request->company,
             'image' => $imagePath, // Guarda la ruta de la imagen
+            'user_id' => auth()->id(), // Guarda el ID del usuario aquí
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Reporte enviado con éxito.');

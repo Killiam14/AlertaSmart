@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReportController;
 use App\Model\Reports;
 
@@ -23,5 +24,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/report', [ReportController::class, 'showForm'])->name('report.form');
 Route::post('/report', [ReportController::class, 'submitReport'])->name('report.submit');
 
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
+Route::get('/history', [DashboardController::class, 'showHistory'])->name('report.history')->middleware(['auth']);
 
 require __DIR__.'/auth.php';

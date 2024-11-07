@@ -10,7 +10,7 @@
 
         <!-- Menú de Navegación -->
         <div class="flex justify-center space-x-8 mb-6">
-            <a href="#" class="text-lg font-medium text-gray-700 hover:text-gray-900">Historial global</a>
+            <a href="{{ route('report.history') }}" class="px-4 py-2 bg-white text-black font-semibold rounded-lg hover:bg-gray-800">Historial</a>
             <a href="#" class="text-lg font-medium text-gray-700 hover:text-gray-900">Contacto</a>
         </div>
 
