@@ -51,7 +51,7 @@
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h3 class="text-xl font-semibold">Configuraciones</h3>
                 <p class="text-gray-600">Configura las opciones de la aplicación.</p>
-                <a href="#" class="text-blue-600 hover:underline">Ver configuraciones</a>
+                <a href="{{ route('configurations.edit') }}" class="text-blue-600 hover:underline">Ver configuraciones</a>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ConfigurationController;
 
 // Redirección al login si no está autenticado
 Route::get('/', function () {
@@ -38,6 +39,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     Route::get('/admin/manage-users', [AdminController::class, 'manageUsers'])->name('admin.users'); // Ruta para gestionar usuarios
     Route::get('/admin/manage-reports', [AdminController::class, 'manageReports'])->name('admin.reports');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/configurations', [ConfigurationController::class, 'edit'])->name('configurations.edit');
+    Route::put('/admin/configurations', [ConfigurationController::class, 'update'])->name('configurations.update');
 });
 
 require __DIR__.'/auth.php';

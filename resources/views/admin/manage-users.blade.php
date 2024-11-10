@@ -17,7 +17,7 @@
                 <h1 class="text-xl font-semibold">Panel de Administración</h1>
             </div>
             <div>
-                <a href="{{ route('dashboard') }}" class="text-white hover:text-gray-400">Dashboard</a>
+            <a href="{{ route('admin.dashboard') }}" class="text-white hover:text-gray-400">Panel de Administración</a>
 
                 <!-- Formulario para cerrar sesión -->
                 <form method="POST" action="{{ route('logout') }}" class="inline-block ml-4">
