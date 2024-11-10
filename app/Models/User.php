@@ -10,28 +10,21 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    const ROLE_ADMIN = 'Administrador';
-    const ROLE_USER = 'Usuario';
-
+    
     protected $fillable = [
         'name', 'email', 'password', 'role',
     ];
 
     public function isAdmin()
     {
-        return $this->role === self::ROLE_ADMIN;
+        return $this->role === 'admin';
     }
 
     public function isUser()
     {
-        return $this->role === self::ROLE_USER;
+        return $this->role === 'user';
     }
 
 
