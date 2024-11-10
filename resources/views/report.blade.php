@@ -1,56 +1,66 @@
-<!-- resources/views/report.blade.php -->
-
 <x-app-layout>
-    <div class="container mx-auto mt-10">
-        <h1 class="text-center text-3xl font-bold mb-6">Formulario Reporte</h1>
+    <div class="container mx-auto mt-16 px-6 sm:px-8 lg:px-16">
+        <!-- Título Principal -->
+        <h1 class="text-center text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 mb-10">
+            Formulario de Reporte
+        </h1>
 
-        <form action="{{ route('report.submit') }}" method="POST" enctype="multipart/form-data">
+        <!-- Formulario -->
+        <form action="{{ route('report.submit') }}" method="POST" enctype="multipart/form-data" class="bg-white shadow-xl rounded-lg p-8">
             @csrf
-            <div class="mb-4">
-                <label for="description" class="block text-lg font-medium">Descripción</label>
-                <textarea id="description" name="description" rows="4" class="w-full p-2 border border-gray-300 rounded" required></textarea>
-            </div>
+            <div class="space-y-6">
+                <!-- Descripción -->
+                <div class="mb-6">
+                    <label for="description" class="block text-lg font-medium text-gray-700">Descripción</label>
+                    <textarea id="description" name="description" rows="4" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500" required></textarea>
+                </div>
 
-            <!-- Campo de ubicación y mapa -->
-            <div class="mb-4">
-                <label for="location" class="block text-lg font-medium">Ubicación</label>
-                <input type="text" id="location" name="location" class="w-full p-2 border border-gray-300 rounded" placeholder="Seleccione una ubicación en el mapa" readonly>
-            </div>
+                <!-- Ubicación y Mapa -->
+                <div class="mb-6">
+                    <label for="location" class="block text-lg font-medium text-gray-700">Ubicación</label>
+                    <input type="text" id="location" name="location" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500" placeholder="Seleccione una ubicación en el mapa" readonly>
+                </div>
 
-            <!-- Mapa de Leaflet -->
-            <div id="map" style="height: 400px; margin-bottom: 1rem;"></div>
+                <!-- Mapa de Leaflet -->
+                <div id="map" style="height: 400px; border-radius: 12px; margin-bottom: 1.5rem;"></div>
 
-            <!-- Resto del formulario -->
-            <div class="mb-4">
-                <label for="fault_type" class="block text-lg font-medium">Tipo de Fallo</label>
-                <input type="text" id="fault_type" name="fault_type" class="w-full p-2 border border-gray-300 rounded" required>
-            </div>
+                <!-- Tipo de Fallo -->
+                <div class="mb-6">
+                    <label for="fault_type" class="block text-lg font-medium text-gray-700">Tipo de Fallo</label>
+                    <input type="text" id="fault_type" name="fault_type" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500" required>
+                </div>
 
-            <div class="mb-4">
-                <label for="company" class="block text-lg font-medium">Empresa Pertinente</label>
-                <input type="text" id="company" name="company" class="w-full p-2 border border-gray-300 rounded" required>
-            </div>
+                <!-- Empresa Pertinente -->
+                <div class="mb-6">
+                    <label for="company" class="block text-lg font-medium text-gray-700">Empresa Pertinente</label>
+                    <input type="text" id="company" name="company" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500" required>
+                </div>
 
-            <div class="mb-4">
-                <label for="image" class="block text-lg font-medium">Subir una Imagen</label>
-                <input type="file" id="image" name="image" class="w-full p-2 border border-gray-300 rounded" accept="image/*">
-            </div>
+                <!-- Subir Imagen -->
+                <div class="mb-6">
+                    <label for="image" class="block text-lg font-medium text-gray-700">Subir una Imagen</label>
+                    <input type="file" id="image" name="image" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500" accept="image/*">
+                </div>
 
-            <div class="text-center">
-                <button type="submit" class="px-6 py-3 bg-blue-500 text-black font-semibold rounded-lg hover:bg-blue-600">
-                    Enviar Reporte
-                </button>
+                <!-- Botón de Enviar -->
+                <div class="text-center">
+                    <button type="submit" class="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:bg-gradient-to-l hover:from-purple-500 hover:to-blue-500 transition ease-in-out duration-300">
+                        Enviar Reporte
+                    </button>
+                </div>
             </div>
         </form>
     </div>
 
     <!-- Modal de Confirmación -->
     <div id="confirmationModal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-md w-1/3">
-            <h2 class="text-xl font-semibold mb-4">¡Éxito!</h2>
-            <p>Tu reporte ha sido enviado correctamente.</p>
-            <div class="flex justify-end mt-4">
-                <button id="closeModal" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Ok</button>
+        <div class="bg-white p-6 rounded-lg shadow-lg w-1/3">
+            <h2 class="text-xl font-semibold text-center text-indigo-600 mb-4">¡Éxito!</h2>
+            <p class="text-lg text-center text-gray-700">Tu reporte ha sido enviado correctamente.</p>
+            <div class="flex justify-center mt-6">
+                <button id="closeModal" class="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-300">
+                    Ok
+                </button>
             </div>
         </div>
     </div>
@@ -64,7 +74,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             // Centrar el mapa en Fusagasugá, Colombia
             var map = L.map('map').setView([4.3378, -74.3638], 13); // Fusagasugá, Colombia
-
 
             // Cargar capa de OpenStreetMap
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
