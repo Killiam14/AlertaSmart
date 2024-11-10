@@ -62,8 +62,9 @@
     <script>
         // Inicializar el mapa cuando el documento esté listo
         document.addEventListener("DOMContentLoaded", function() {
-            // Centrar el mapa en una ubicación por defecto
-            var map = L.map('map').setView([4.7110, -74.0721], 13); // Bogotá, Colombia
+            // Centrar el mapa en Fusagasugá, Colombia
+            var map = L.map('map').setView([4.3378, -74.3638], 13); // Fusagasugá, Colombia
+
 
             // Cargar capa de OpenStreetMap
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
