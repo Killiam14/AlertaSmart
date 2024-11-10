@@ -1,29 +1,41 @@
-<!-- resources/views/dashboard.blade.php -->
-
 <x-app-layout>
-    <div class="container mx-auto mt-10">
+    <div class="container mx-auto mt-16 px-6 sm:px-8 lg:px-16">
         <!-- Título Principal -->
-        <h1 class="text-center text-6xl font-bold mb-6">AlertaSmart</h1>
+        <h1 class="text-center text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-blue-500 to-teal-400 mb-8 animate-text">
+            AlertaSmart
+        </h1>
 
         <!-- Separador -->
-        <hr class="border-t-2 border-gray-300 mb-4">
+        <div class="mb-10">
+            <hr class="border-t-2 border-gray-300 opacity-30">
+        </div>
 
         <!-- Menú de Navegación -->
-        <div class="flex justify-center space-x-8 mb-6">
-            <a href="{{ route('report.history') }}" class="px-4 py-2 bg-white text-black font-semibold rounded-lg hover:bg-gray-800">Historial</a>
-            <a href="{{ route('contact') }}" class="px-4 py-2 bg-white text-black font-semibold rounded-lg hover:bg-gray-800">Contactanos</a>
+        <div class="flex justify-center space-x-16 mb-12">
+            <a href="{{ route('report.history') }}" class="px-8 py-4 bg-gradient-to-r from-indigo-500 to-indigo-700 text-white font-bold rounded-lg shadow-xl transform hover:scale-110 hover:shadow-2xl hover:from-indigo-600 hover:to-indigo-800 transition duration-500 ease-in-out">
+                Historial
+            </a>
+            <a href="{{ route('contact') }}" class="px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-700 text-white font-bold rounded-lg shadow-xl transform hover:scale-110 hover:shadow-2xl hover:from-teal-600 hover:to-teal-800 transition duration-500 ease-in-out">
+                Contáctanos
+            </a>
         </div>
 
         <!-- Otro Separador -->
-        <hr class="border-t-2 border-gray-300 mb-4">
+        <div class="mb-10">
+            <hr class="border-t-2 border-gray-300 opacity-30">
+        </div>
 
         <!-- Sección de Reporte de Problemas -->
         <div class="text-center">
-            <h2 class="text-xl font-semibold mb-4">Reporta un Problema</h2>
-            <hr class="border-t-2 border-gray-300 mb-6">
-            
+            <h2 class="text-3xl font-semibold text-gray-800 mb-8 animate__animated animate__fadeIn">
+                Reporta un Problema
+            </h2>
+            <div class="mb-8">
+                <hr class="border-t-2 border-gray-300 opacity-30">
+            </div>
+
             <!-- Botón de Reporte -->
-            <a href="{{ route('report.form') }}" class="px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-800">
+            <a href="{{ route('report.form') }}" class="px-10 py-5 bg-gradient-to-r from-pink-500 to-pink-700 text-white font-semibold rounded-full shadow-2xl transform hover:scale-110 hover:shadow-2xl hover:from-pink-600 hover:to-pink-800 transition duration-500 ease-in-out">
                 Reportar un Problema
             </a>
         </div>
