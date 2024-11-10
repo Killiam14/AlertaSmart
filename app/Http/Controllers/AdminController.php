@@ -21,31 +21,22 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
+    // Método para gestionar usuarios
     public function manageUsers()
     {
-        // Lógica para obtener los usuarios
-        $users = User::all(); // Ejemplo, puedes ajustar esto según tus necesidades
-        return view('admin.users', compact('users'));
+        // Obtener todos los usuarios
+        $users = User::all();
+
+        // Pasar los usuarios a la vista
+        return view('admin.manage-users', compact('users'));
     }
 
-    // Métodos para gestionar reportes y configuraciones
     public function manageReports()
     {
-        // Lógica para obtener los reportes
-        $reports = Report::all(); // Ejemplo, ajusta según el modelo Report
-        return view('admin.reports', compact('reports'));
-    }
+        // Obtener todos los reportes
+        $reports = Report::with('user')->get();
 
-    public function settings()
-    {
-        return view('admin.settings');
+        // Pasar los reportes a la vista
+        return view('admin.manage-reports', compact('reports'));
     }
-
-    public function updateSettings(Request $request)
-    {
-        // Lógica para actualizar las configuraciones
-        // Ejemplo: Guardar en el archivo de configuración o en la base de datos
-        return redirect()->route('admin.settings')->with('success', 'Configuraciones actualizadas');
-    }
-
 }

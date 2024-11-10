@@ -12,6 +12,11 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use Notifiable;
 
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class); // Un usuario tiene muchos reportes
+    }
     
     protected $fillable = [
         'name', 'email', 'password', 'role',

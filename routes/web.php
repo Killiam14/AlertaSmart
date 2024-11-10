@@ -36,7 +36,8 @@ Route::get('/contact', [DashboardController::class, 'showContact'])->name('conta
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-    Route::get('/admin/users', [AdminController::class, 'manageUsers'])->name('admin.users'); // Ruta para gestionar usuarios
+    Route::get('/admin/manage-users', [AdminController::class, 'manageUsers'])->name('admin.users'); // Ruta para gestionar usuarios
+    Route::get('/admin/manage-reports', [AdminController::class, 'manageReports'])->name('admin.reports');
 });
 
 require __DIR__.'/auth.php';

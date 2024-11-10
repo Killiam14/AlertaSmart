@@ -41,12 +41,12 @@
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h3 class="text-xl font-semibold">Gestionar Usuarios</h3>
                 <p class="text-gray-600">Administra los usuarios de la plataforma.</p>
-                <a href="#" class="text-blue-600 hover:underline">Ver usuarios</a>
+                <a href="{{ route('admin.users') }}" class="text-blue-600 hover:underline">Ver usuarios</a>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h3 class="text-xl font-semibold">Gestionar Reportes</h3>
                 <p class="text-gray-600">Revisa los reportes generados por los usuarios.</p>
-                <a href="#" class="text-blue-600 hover:underline">Ver reportes</a>
+                <a href="{{ route('admin.reports') }}" class="text-blue-600 hover:underline">Ver reportes</a>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h3 class="text-xl font-semibold">Configuraciones</h3>
