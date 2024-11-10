@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role ?? User::ROLE_USER,
+            'role' => $request->role ?? 'user',
         ]);
 
         event(new Registered($user));
