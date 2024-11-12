@@ -1,5 +1,3 @@
-<!-- resources/views/admin/manage-reports.blade.php -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,21 +6,21 @@
     <title>Gestionar Reportes</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
+<body class="bg-green-50">
 
     <!-- Navbar o Barra de navegación -->
-    <nav class="bg-gray-800 p-4 text-white">
+    <nav class="bg-green-600 p-4 text-white">
         <div class="container mx-auto flex justify-between">
             <div>
                 <h1 class="text-xl font-semibold">Gestionar Reportes</h1>
             </div>
             <div>
-                <a href="{{ route('admin.dashboard') }}" class="text-white hover:text-gray-400">Panel de Administración</a>
+                <a href="{{ route('admin.dashboard') }}" class="text-white hover:text-gray-200">Panel de Administración</a>
                 
                 <!-- Formulario para cerrar sesión -->
                 <form method="POST" action="{{ route('logout') }}" class="inline-block ml-4">
                     @csrf
-                    <button type="submit" class="text-white hover:text-gray-400">Cerrar sesión</button>
+                    <button type="submit" class="text-white hover:text-gray-200">Cerrar sesión</button>
                 </form>
             </div>
         </div>
@@ -30,7 +28,7 @@
 
     <div class="container mx-auto mt-8 p-4">
         <!-- Tabla de Reportes -->
-        <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-white p-6 rounded-lg shadow-lg bg-opacity-80 border border-green-300">
             <h2 class="text-2xl font-bold text-gray-800">Listado de Reportes</h2>
 
             <table class="min-w-full mt-6 table-auto">
@@ -45,22 +43,20 @@
                 </thead>
                 <tbody>
                     @foreach ($reports as $report)
-                    <tr>
+                    <tr class="border-t">
                         <td class="px-4 py-2 border">{{ $report->id }}</td>
-                        <td class="px-4 py-2 border">
-                        {{ $report->user ? $report->user->name : 'Usuario eliminado' }}
-                        </td> <!-- Si tienes relación con User -->
+                        <td class="px-4 py-2 border">{{ $report->user ? $report->user->name : 'Usuario eliminado' }}</td>
                         <td class="px-4 py-2 border">{{ $report->title }}</td>
                         <td class="px-4 py-2 border">{{ $report->created_at->format('d/m/Y') }}</td>
                         <td class="px-4 py-2 border">
                             <!-- Botón para ver detalles -->
-                            <a href="{{ route('admin.reports.view', $report->id) }}" class="text-blue-600 hover:underline">Ver Detalles</a>
+                            <a href="{{ route('admin.reports.view', $report->id) }}" class="text-green-600 hover:text-green-400">Ver Detalles</a>
 
                             <!-- Formulario para Eliminar -->
                             <form action="{{ route('admin.reports.delete', $report->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:underline">Eliminar</button>
+                                <button type="submit" class="text-red-600 hover:text-red-400">Eliminar</button>
                             </form>
                         </td>
                     </tr>
@@ -80,21 +76,19 @@
     <script>
         // Mostrar y ocultar el mensaje de éxito con animaciones
         @if(session('success'))
-            // Mostrar el mensaje con animación de entrada
             const successMessage = document.getElementById('success-message');
             setTimeout(function() {
                 successMessage.classList.remove('opacity-0', 'translate-y-full');
                 successMessage.classList.add('opacity-100', 'translate-y-0');
-            }, 100); // Aparece después de un pequeño retraso para activar la animación
+            }, 100);
 
-            // Ocultar el mensaje con animación de salida después de 3 segundos
             setTimeout(function() {
                 successMessage.classList.remove('opacity-100', 'translate-y-0');
                 successMessage.classList.add('opacity-0', 'translate-y-full');
                 setTimeout(function() {
-                    successMessage.style.display = 'none'; // Ocultar el mensaje completamente después de la animación
-                }, 500); // Espera medio segundo antes de ocultarlo
-            }, 3000); // Después de 3 segundos se inicia la animación de salida
+                    successMessage.style.display = 'none';
+                }, 500);
+            }, 3000);
         @endif
     </script>
 

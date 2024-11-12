@@ -1,5 +1,3 @@
-<!-- resources/views/admin/edit-user.blade.php -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,21 +6,21 @@
     <title>Editar Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
+<body class="bg-green-50">
 
     <!-- Navbar -->
-    <nav class="bg-gray-800 p-4 text-white">
+    <nav class="bg-green-600 p-4 text-white">
         <div class="container mx-auto flex justify-between">
             <div>
                 <h1 class="text-xl font-semibold">Panel de Administración</h1>
             </div>
             <div>
-                <a href="{{ route('admin.dashboard') }}" class="text-white hover:text-gray-400">Panel de Administración</a>
+                <a href="{{ route('admin.dashboard') }}" class="text-white hover:text-gray-200">Panel de Administración</a>
 
                 <!-- Formulario para cerrar sesión -->
                 <form method="POST" action="{{ route('logout') }}" class="inline-block ml-4">
                     @csrf
-                    <button type="submit" class="text-white hover:text-gray-400">Cerrar sesión</button>
+                    <button type="submit" class="text-white hover:text-gray-200">Cerrar sesión</button>
                 </form>
             </div>
         </div>
@@ -30,13 +28,13 @@
 
     <div class="container mx-auto mt-8 p-4">
         <!-- Título -->
-        <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-white p-6 rounded-lg shadow-lg bg-opacity-80 border border-green-300">
             <h2 class="text-2xl font-bold text-gray-800">Editar Usuario</h2>
             <p class="text-gray-600">Aquí puedes editar la información del usuario.</p>
         </div>
 
         <!-- Formulario de edición de usuario -->
-        <div class="mt-6 bg-white p-6 rounded-lg shadow-md">
+        <div class="mt-6 bg-white p-6 rounded-lg shadow-lg bg-opacity-80 border border-green-300">
             <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -64,7 +62,7 @@
 
                 <!-- Botón de guardar -->
                 <div class="mb-4">
-                    <button type="submit" class="px-6 py-3 bg-blue-500 text-white font-bold rounded-md">Guardar Cambios</button>
+                    <button type="submit" class="px-6 py-3 bg-green-600 text-white font-bold rounded-md hover:bg-green-500">Guardar Cambios</button>
                 </div>
             </form>
         </div>

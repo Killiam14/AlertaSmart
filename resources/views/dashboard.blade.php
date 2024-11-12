@@ -1,7 +1,6 @@
 <x-app-layout>
-    <div class="container mx-auto mt-16 px-6 sm:px-8 lg:px-16">
-        <!-- Título Principal -->
-        <h1 class="text-center text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-blue-500 to-teal-400 mb-8 animate-text">
+    <div class="container mx-auto mt-16 px-6 sm:px-8 lg:px-16 bg-gradient-to-r from-gray-800 via-gray-900 to-black bg-opacity-60 pt-16 pb-16">
+        <h1 class="text-center text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-white-500 to-teal-400 mb-8 animate-text">
             AlertaSmart
         </h1>
 
@@ -15,7 +14,7 @@
             <a href="{{ route('report.history') }}" class="px-8 py-4 bg-gradient-to-r from-indigo-500 to-indigo-700 text-white font-bold rounded-lg shadow-xl transform hover:scale-110 hover:shadow-2xl hover:from-indigo-600 hover:to-indigo-800 transition duration-500 ease-in-out">
                 Historial
             </a>
-            <a href="{{ route('contact') }}" class="px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-700 text-white font-bold rounded-lg shadow-xl transform hover:scale-110 hover:shadow-2xl hover:from-teal-600 hover:to-teal-800 transition duration-500 ease-in-out">
+            <a href="{{ route('contact') }}" class="px-8 py-4 bg-gradient-to-r from-indigo-500 to-teal-700 text-white font-bold rounded-lg shadow-xl transform hover:scale-110 hover:shadow-2xl hover:from-teal-600 hover:to-teal-800 transition duration-500 ease-in-out">
                 Contáctanos
             </a>
         </div>
@@ -27,7 +26,7 @@
 
         <!-- Sección de Reporte de Problemas -->
         <div class="text-center">
-            <h2 class="text-3xl font-semibold text-gray-800 mb-8 animate__animated animate__fadeIn">
+            <h2 class="text-3xl font-semibold text-white-800 mb-8 animate__animated animate__fadeIn">
                 Reporta un Problema
             </h2>
             <div class="mb-8">
@@ -35,7 +34,7 @@
             </div>
 
             <!-- Botón de Reporte -->
-            <a href="{{ route('report.form') }}" class="px-10 py-5 bg-gradient-to-r from-pink-500 to-pink-700 text-white font-semibold rounded-full shadow-2xl transform hover:scale-110 hover:shadow-2xl hover:from-pink-600 hover:to-pink-800 transition duration-500 ease-in-out">
+            <a href="{{ route('report.form') }}" class="px-10 py-5 bg-gradient-to-r from-indigo-500 to-pink-700 text-white font-semibold rounded-full shadow-2xl transform hover:scale-110 hover:shadow-2xl hover:from-pink-600 hover:to-pink-800 transition duration-500 ease-in-out">
                 Reportar un Problema
             </a>
         </div>
