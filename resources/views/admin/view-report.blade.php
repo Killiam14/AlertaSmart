@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Reporte</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- CSS de Leaflet para el mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body class="bg-green-50">
 
@@ -43,6 +45,8 @@
             <div class="mb-4">
                 <h3 class="font-semibold text-green-800">Ubicación:</h3>
                 <p class="text-gray-700">{{ $report->location }}</p>
+                <!-- Contenedor para el mapa -->
+                <div id="map" class="w-full h-64 mt-4 rounded-lg shadow-md border border-green-500"></div>
             </div>
 
             <!-- Tipo de fallo -->
@@ -81,5 +85,27 @@
         </div>
     </div>
 
+    <!-- JavaScript de Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+        // Reemplaza estas variables con las coordenadas reales del reporte
+        const latitude = {{ $report->latitude }};
+        const longitude = {{ $report->longitude }};
+
+        // Inicializar el mapa
+        const map = L.map('map').setView([latitude, longitude], 13);
+
+        // Cargar las capas de OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Agregar un marcador en las coordenadas
+        L.marker([latitude, longitude]).addTo(map)
+            .bindPopup('Ubicación del reporte')
+            .openPopup();
+    </script>
 </body>
 </html>

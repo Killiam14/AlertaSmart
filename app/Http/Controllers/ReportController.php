@@ -39,8 +39,8 @@ class ReportController extends Controller
         Report::create([
             'description' => $request->description,
             'location' => $request->location, // Guarda el texto de ubicación
-            'latitude' => $latitude, // Guarda la latitud
-            'longitude' => $longitude, // Guarda la longitud
+            'latitude' => $request->latitude, // Guarda la latitud
+            'longitude' => $request->longitude, // Guarda la longitud
             'fault_type' => $request->fault_type,
             'company' => $request->company,
             'image' => $imagePath, // Guarda la ruta de la imagen

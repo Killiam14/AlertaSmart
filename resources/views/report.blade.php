@@ -12,13 +12,13 @@
                 <!-- Descripción -->
                 <div class="mb-6">
                     <label for="description" class="block text-lg font-medium text-gray-700">Descripción</label>
-                    <textarea id="description" name="description" rows="4" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500" required></textarea>
+                    <textarea id="description" name="description" rows="4" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500 text-gray-900" required></textarea>
                 </div>
 
                 <!-- Ubicación y Mapa -->
                 <div class="mb-6">
                     <label for="location" class="block text-lg font-medium text-gray-700">Ubicación</label>
-                    <input type="text" id="location" name="location" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500" placeholder="Seleccione una ubicación en el mapa" readonly>
+                    <input type="text" id="location" name="location" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500 text-gray-900" placeholder="Seleccione una ubicación en el mapa" readonly>
                 </div>
 
                 <!-- Mapa de Leaflet -->
@@ -27,19 +27,19 @@
                 <!-- Tipo de Fallo -->
                 <div class="mb-6">
                     <label for="fault_type" class="block text-lg font-medium text-gray-700">Tipo de Fallo</label>
-                    <input type="text" id="fault_type" name="fault_type" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500" required>
+                    <input type="text" id="fault_type" name="fault_type" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500 text-gray-900" required>
                 </div>
 
                 <!-- Empresa Pertinente -->
                 <div class="mb-6">
                     <label for="company" class="block text-lg font-medium text-gray-700">Empresa Pertinente</label>
-                    <input type="text" id="company" name="company" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500" required>
+                    <input type="text" id="company" name="company" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500 text-gray-900" required>
                 </div>
 
                 <!-- Subir Imagen -->
                 <div class="mb-6">
                     <label for="image" class="block text-lg font-medium text-gray-700">Subir una Imagen</label>
-                    <input type="file" id="image" name="image" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500" accept="image/*">
+                    <input type="file" id="image" name="image" class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-500 text-gray-900" accept="image/*">
                 </div>
 
                 <!-- Botón de Enviar -->
@@ -64,43 +64,30 @@
     <script>
         // Inicializar el mapa cuando el documento esté listo
         document.addEventListener("DOMContentLoaded", function() {
-            // Centrar el mapa en Fusagasugá, Colombia
-            var map = L.map('map').setView([4.3378, -74.3638], 13); // Fusagasugá, Colombia
+            var map = L.map('map').setView([4.3378, -74.3638], 13);
 
-            // Cargar capa de OpenStreetMap
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
 
-            // Variable para el marcador
             var marker;
 
-            // Función para actualizar el campo de ubicación y el marcador
             function onMapClick(e) {
-                // Eliminar marcador existente
                 if (marker) {
                     map.removeLayer(marker);
                 }
-
-                // Agregar un nuevo marcador
                 marker = L.marker(e.latlng).addTo(map);
-
-                // Actualizar el campo de texto con las coordenadas
                 document.getElementById('location').value = `${e.latlng.lat}, ${e.latlng.lng}`;
             }
 
-            // Evento para detectar clics en el mapa
             map.on('click', onMapClick);
         });
 
-        // Mostrar notificación flotante si hay un mensaje de éxito en la sesión
         window.onload = function() {
             @if (session('success'))
                 var notification = document.getElementById('floatingNotification');
                 notification.classList.remove('hidden');
-
-                // Ocultar la notificación después de 10 segundos
                 setTimeout(function() {
                     notification.classList.add('hidden');
                 }, 10000);
