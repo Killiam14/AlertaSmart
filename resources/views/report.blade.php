@@ -52,17 +52,9 @@
         </form>
     </div>
 
-    <!-- Modal de Confirmación -->
-    <div id="confirmationModal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-1/3">
-            <h2 class="text-xl font-semibold text-center text-indigo-600 mb-4">¡Éxito!</h2>
-            <p class="text-lg text-center text-gray-700">Tu reporte ha sido enviado correctamente.</p>
-            <div class="flex justify-center mt-6">
-                <button id="closeModal" class="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-300">
-                    Ok
-                </button>
-            </div>
-        </div>
+    <!-- Notificación Flotante -->
+    <div id="floatingNotification" class="fixed top-10 right-10 bg-green-500 text-white text-lg font-semibold px-4 py-3 rounded-lg shadow-lg hidden">
+        ¡Tu reporte ha sido enviado con éxito!
     </div>
 
     <!-- Scripts de Leaflet y JavaScript -->
@@ -102,17 +94,17 @@
             map.on('click', onMapClick);
         });
 
-        // Mostrar el modal si hay un mensaje de éxito en la sesión
+        // Mostrar notificación flotante si hay un mensaje de éxito en la sesión
         window.onload = function() {
             @if (session('success'))
-                document.getElementById('confirmationModal').classList.remove('hidden');
-            @endif
-        }
+                var notification = document.getElementById('floatingNotification');
+                notification.classList.remove('hidden');
 
-        // Cerrar el modal y redirigir a la pantalla principal
-        document.getElementById('closeModal').onclick = function() {
-            document.getElementById('confirmationModal').classList.add('hidden');
-            window.location.href = "{{ route('dashboard') }}";
-        }
+                // Ocultar la notificación después de 10 segundos
+                setTimeout(function() {
+                    notification.classList.add('hidden');
+                }, 10000);
+            @endif
+        };
     </script>
 </x-app-layout>

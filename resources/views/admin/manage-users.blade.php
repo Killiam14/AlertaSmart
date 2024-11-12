@@ -54,6 +54,7 @@
                             <td class="px-4 py-2">{{ $user->role }}</td>
                             <td class="px-4 py-2">
                                 <a href="#" class="text-blue-600 hover:underline">Editar</a>
+                                <a href="#" class="text-red-600 hover:underline">Eliminar</a>
                                 <!-- Aquí puedes agregar más acciones como eliminar -->
                             </td>
                         </tr>

@@ -39,5 +39,21 @@
                 Reportar un Problema
             </a>
         </div>
+
+        <!-- Notificación en la esquina inferior derecha -->
+        @if (session('success'))
+            <div id="successMessage" class="fixed bottom-5 right-5 bg-green-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg animate__animated animate__fadeIn">
+                {{ session('success') }}
+            </div>
+            <script>
+                // Ocultar el mensaje después de 10 segundos
+                setTimeout(() => {
+                    const message = document.getElementById('successMessage');
+                    if (message) {
+                        message.style.display = 'none';
+                    }
+                }, 3000);
+            </script>
+        @endif
     </div>
 </x-app-layout>
