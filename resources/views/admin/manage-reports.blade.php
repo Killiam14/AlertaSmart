@@ -53,10 +53,10 @@
                         <td class="px-4 py-2 border">{{ $report->title }}</td>
                         <td class="px-4 py-2 border">{{ $report->created_at->format('d/m/Y') }}</td>
                         <td class="px-4 py-2 border">
-                            <!-- Puedes agregar botones para ver, editar, eliminar reportes -->
+                            <!-- Botón para ver detalles -->
                             <a href="{{ route('admin.reports.view', $report->id) }}" class="text-blue-600 hover:underline">Ver Detalles</a>
 
-                            <!-- Formulario Eliminar -->
+                            <!-- Formulario para Eliminar -->
                             <form action="{{ route('admin.reports.delete', $report->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
@@ -69,6 +69,34 @@
             </table>
         </div>
     </div>
+
+    <!-- Mensaje de éxito en la parte inferior derecha -->
+    @if(session('success'))
+        <div id="success-message" class="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-md transform translate-y-full opacity-0 transition-all duration-500 ease-out">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <script>
+        // Mostrar y ocultar el mensaje de éxito con animaciones
+        @if(session('success'))
+            // Mostrar el mensaje con animación de entrada
+            const successMessage = document.getElementById('success-message');
+            setTimeout(function() {
+                successMessage.classList.remove('opacity-0', 'translate-y-full');
+                successMessage.classList.add('opacity-100', 'translate-y-0');
+            }, 100); // Aparece después de un pequeño retraso para activar la animación
+
+            // Ocultar el mensaje con animación de salida después de 3 segundos
+            setTimeout(function() {
+                successMessage.classList.remove('opacity-100', 'translate-y-0');
+                successMessage.classList.add('opacity-0', 'translate-y-full');
+                setTimeout(function() {
+                    successMessage.style.display = 'none'; // Ocultar el mensaje completamente después de la animación
+                }, 500); // Espera medio segundo antes de ocultarlo
+            }, 3000); // Después de 3 segundos se inicia la animación de salida
+        @endif
+    </script>
 
 </body>
 </html>
