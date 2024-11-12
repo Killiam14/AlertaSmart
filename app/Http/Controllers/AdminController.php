@@ -39,4 +39,28 @@ class AdminController extends Controller
         // Pasar los reportes a la vista
         return view('admin.manage-reports', compact('reports'));
     }
+
+    public function viewReport($id)
+    {
+        // Buscar el reporte por ID
+        $report = Report::findOrFail($id);
+
+        // Retornar la vista con el reporte
+        return view('admin.view-report', compact('report'));
+    }
+
+    public function destroyReport($id)
+    {
+        $report = Report::findOrFail($id);
+
+        // Eliminar la imagen asociada si existe
+        if ($report->image) {
+            Storage::disk('public')->delete($report->image);
+        }
+
+        // Eliminar el reporte de la base de datos
+        $report->delete();
+
+        return redirect()->route('admin.reports')->with('success', 'Reporte eliminado correctamente');
+    }
 }

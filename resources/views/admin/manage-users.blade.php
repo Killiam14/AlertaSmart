@@ -53,8 +53,14 @@
                             <td class="px-4 py-2">{{ $user->email }}</td>
                             <td class="px-4 py-2">{{ $user->role }}</td>
                             <td class="px-4 py-2">
-                                <a href="#" class="text-blue-600 hover:underline">Editar</a>
-                                <a href="#" class="text-red-600 hover:underline">Eliminar</a>
+                                <a href="{{ route('admin.users.edit', $user->id) }}" class="text-blue-600 hover:underline">Editar</a>
+                                
+                                <!-- Formulario de eliminación -->
+                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline-block ml-2">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:underline">Eliminar</button>
+                                </form>
                                 <!-- Aquí puedes agregar más acciones como eliminar -->
                             </td>
                         </tr>

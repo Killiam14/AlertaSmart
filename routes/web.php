@@ -7,6 +7,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ConfigurationController;
+use App\Http\Controllers\UserController;
 
 // Redirección al login si no está autenticado
 Route::get('/', function () {
@@ -37,8 +38,13 @@ Route::get('/contact', [DashboardController::class, 'showContact'])->name('conta
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-    Route::get('/admin/manage-users', [AdminController::class, 'manageUsers'])->name('admin.users'); // Ruta para gestionar usuarios
+    Route::get('/admin/manage-users', [AdminController::class, 'manageUsers'])->name('admin.users');
     Route::get('/admin/manage-reports', [AdminController::class, 'manageReports'])->name('admin.reports');
+    Route::get('/admin/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('/admin/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    Route::get('/admin/reports/{report}', [AdminController::class, 'viewReport'])->name('admin.reports.view');
+    Route::delete('/admin/reports/{report}', [AdminController::class, 'destroyReport'])->name('admin.reports.delete');
 });
 
 Route::middleware(['auth'])->group(function () {

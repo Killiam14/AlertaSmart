@@ -47,14 +47,21 @@
                     @foreach ($reports as $report)
                     <tr>
                         <td class="px-4 py-2 border">{{ $report->id }}</td>
-                        <td class="px-4 py-2 border">{{ $report->user->name }}</td> <!-- Si tienes relación con User -->
+                        <td class="px-4 py-2 border">
+                        {{ $report->user ? $report->user->name : 'Usuario eliminado' }}
+                        </td> <!-- Si tienes relación con User -->
                         <td class="px-4 py-2 border">{{ $report->title }}</td>
                         <td class="px-4 py-2 border">{{ $report->created_at->format('d/m/Y') }}</td>
                         <td class="px-4 py-2 border">
                             <!-- Puedes agregar botones para ver, editar, eliminar reportes -->
-                            <a href="#" class="text-blue-600 hover:underline">Ver</a>
-                            <a href="#" class="text-yellow-600 hover:underline">Editar</a>
-                            <a href="#" class="text-red-600 hover:underline">Eliminar</a>
+                            <a href="{{ route('admin.reports.view', $report->id) }}" class="text-blue-600 hover:underline">Ver Detalles</a>
+
+                            <!-- Formulario Eliminar -->
+                            <form action="{{ route('admin.reports.delete', $report->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:underline">Eliminar</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
